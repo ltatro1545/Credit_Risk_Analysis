@@ -33,3 +33,13 @@ The following models used ensemble methods:
 Each method result was given a classification report and a confusion matrix to juxtapose the model's predictions to the actual data. The following image is the set of results. Take note that "pre" stands for *precision* and "rec" stands for the *recall*.
 
 ![TotalCM](https://user-images.githubusercontent.com/92493572/155912127-e6eb1e2a-ac32-4fb4-a21a-5bb303c772a0.png)
+
+## Summary
+Ideally, a credit risk classifier would correctly categorize high risk loans as high risk, and always correctly classify low risk loans as low risk - this has proven to be a tricky task, at least in this case. The baseline model only caught 10/104 high risk loans, but correctly categorized 17,097/17,101 low risk loans. The F1 score, a balanced metric between precision and recall, for the high risk class baseline was 0.17. The goal is increase the rate in which it detects high risk loans, and hopefully perform even better with the low risk ones, though that is setting a high standard. Doing so will inevitably drive up the F1 score as well, though the F1 score is debatably not as important as the recall values because catching high risk loans is key.
+
+The Easy Ensemble AdaBoost model performed the best out of the six models:
+  - The high risk recall was the highest of all models, including the baseline, at 0.92
+  - The low risk recall was the second highest, behind the baseline, at 0.94
+  - The high risk precision dropped drastically to 0.09, though it inappropriately flagged low risk loans as high risk at a greatly reduced rate compared to other models, exclusing the baseline
+
+The results indicate that the AdaBoost method correctly categorized high risk loans nine times more often than the baseline, but incorrectly categorized low risk loans one in 17 times. More data to train with *could* help, but over 17,000 data points is rather robust as is. Ultimately, how low and high risk are defined may be what makes the difference - perhaps a medium risk option should be defined and included. Given what is available, the AdaBoost model used in this analysis is recommended for identifying high credit risk.
